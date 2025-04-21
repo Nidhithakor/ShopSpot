@@ -17,7 +17,7 @@ connectCloudinary();
 
 // middlewares 
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
 
 // api endpoints
 app.use('/api/user',userRouter);
@@ -30,6 +30,15 @@ app.use('/api/admin' , productRouter );
 app.get('/' , (req,res) => {
     res.send('API working');
 });
+
+app.use(
+  cors({
+    origin: "https://shop-spot-nu.vercel.app", 
+    credentials: true,
+  })
+);
+
+
 
 app.listen(port , () => {
     console.log("Server started on port : " + port);
