@@ -36,6 +36,7 @@ app.use(
     origin: [
       "https://shop-spot-nu.vercel.app",
       "https://shop-spot-nidhis-projects-1e663d77.vercel.app",
+      "https://shop-spot-m0cmn3d74-nidhis-project.vercel.app",
     ],
     credentials: true,
   })
