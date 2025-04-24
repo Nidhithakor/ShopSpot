@@ -31,13 +31,25 @@ app.get('/' , (req,res) => {
     res.send('API working');
 });
 
+
+const allowedOrigins = [
+  "https://shop-spot-nu.vercel.app", // production
+  /\.vercel\.app$/, // regex to allow ALL vercel preview URLs
+];
 app.use(
   cors({
-    origin: [
-      "https://shop-spot-nu.vercel.app",
-      "https://shop-spot-nidhis-projects-1e663d77.vercel.app",
-      "https://shop-spot-m0cmn3d74-nidhis-project.vercel.app",
-    ],
+    origin: function (origin, callback) {
+      if (
+        !origin ||
+        allowedOrigins.some((o) =>
+          typeof o === "string" ? origin === o : o.test(origin)
+        )
+      ) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );
