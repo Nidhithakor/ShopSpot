@@ -33,7 +33,10 @@ app.get('/' , (req,res) => {
 
 app.use(
   cors({
-    origin: "https://shop-spot-nu.vercel.app", 
+    origin: [
+      "https://shop-spot-nu.vercel.app",
+      "https://shop-spot-nidhis-projects-1e663d77.vercel.app",
+    ],
     credentials: true,
   })
 );
