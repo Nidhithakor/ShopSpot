@@ -119,28 +119,42 @@ const ShopContextProvider = (props) => {
     return totalAmount;
   };
 
+  // const getProductsData = async () => {
+  //   try {
+  //        console.log(backendUrl);
+  //     const response = await axios.get(backendUrl + "/api/product/list");
+
+  //     // console.log(response);
+   
+  //     if(response.data.success) {
+  //       setProducts(response.data.products)
+  //     } else {
+  //       toast.error(response.data.message);
+  //     }
+
+
+  //   } catch (error) {
+  //     console.log(error);
+  //     toast.error(error.message);
+  //   }
+  // };
+
   const getProductsData = async () => {
     try {
-         console.log(backendUrl);
-      const response = await axios.get(backendUrl + "/api/product/list", {
-        withCredentials: true,
-        headers: { "Content-Type": "application/json" },
-      });
+      const response = await axios.get(backendUrl + "/api/product/list");
 
-      // console.log(response);
-   
-      if(response.data.success) {
-        setProducts(response.data.products)
+      console.log("RESPONSE:", response);
+      if (response.data.success) {
+        setProducts(response.data.products);
       } else {
         toast.error(response.data.message);
       }
-
-
     } catch (error) {
-      console.log(error);
+      console.log("AXIOS ERROR:", error);
       toast.error(error.message);
     }
   };
+
 
   const getUserCart = async ( token ) => {
       try {      
