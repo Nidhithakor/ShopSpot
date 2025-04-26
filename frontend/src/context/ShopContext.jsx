@@ -120,25 +120,25 @@ const ShopContextProvider = (props) => {
     return totalAmount;
   };
 
-  // const getProductsData = async () => {
-  //   try {
-  //        console.log(backendUrl);
-  //     const response = await axios.get(backendUrl + "/api/product/list");
+  const getProductsData = async () => {
+    try {
+        
+      const response = await axios.get(`${backendUrl}/api/product/list`);
 
-  //     // console.log(response);
+      console.log(response);
    
-  //     if(response.data.success) {
-  //       setProducts(response.data.products)
-  //     } else {
-  //       toast.error(response.data.message);
-  //     }
+      if(response.data.success) {
+        setProducts(response.data.products)
+      } else {
+        toast.error(response.data.message);
+      }
 
 
-  //   } catch (error) {
-  //     console.log(error);
-  //     toast.error(error.message);
-  //   }
-  // };
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
+  };
 
   // const getProductsData = async () => {
   //   try {
@@ -156,21 +156,21 @@ const ShopContextProvider = (props) => {
   //     toast.error(error.message);
   //   }
   // };
-const getProductsData = async () => {
-  try {
-    const response = await axios.get(`${backendUrl}/api/product/list`);
-    console.log("RESPONSE:", response.data);
+// const getProductsData = async () => {
+//   try {
+//     const response = await axios.get(`${backendUrl}/api/product/list`);
+//     console.log("RESPONSE:", response.data);
 
-    if (response.data.success) {
-      console.log("Products Data:", response.data.products);
-      setProducts(response.data.products);
-    } else {
-      toast.error(response.data.message);
-    }
-  } catch (error) {
-    console.log("AXIOS ERROR:", error);
-    toast.error(error.message);
-  }
+//     if (response.data.success) {
+//       console.log("Products Data:", response.data.products);
+//       setProducts(response.data.products);
+//     } else {
+//       toast.error(response.data.message);
+//     }
+//   } catch (error) {
+//     console.log("AXIOS ERROR:", error);
+//     toast.error(error.message);
+//   }
 };
 
 
