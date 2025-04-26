@@ -8,7 +8,6 @@ export const ShopContext = createContext();
 const ShopContextProvider = (props) => {
   const currency = "$";
   const delivery_fee = 10;
-  // const backendUrl = import.meta.env.REACT_APP_BACKEND_URL;
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
@@ -141,7 +140,10 @@ const ShopContextProvider = (props) => {
 
   const getProductsData = async () => {
     try {
-      const response = await axios.get(backendUrl + "/api/product/list");
+      console.log("entered try block")
+      const response = await axios.get(backendUrl + "/api/product/list" ,{
+        
+  headers: { "Content-Type": "application/json" },      });
 
       console.log("RESPONSE:", response);
       if (response.data.success) {
@@ -150,6 +152,7 @@ const ShopContextProvider = (props) => {
         toast.error(response.data.message);
       }
     } catch (error) {
+      console.log("entered catch block");
       console.log("AXIOS ERROR:", error);
       toast.error(error.message);
     }
