@@ -171,7 +171,7 @@ const ShopContextProvider = (props) => {
 //     console.log("AXIOS ERROR:", error);
 //     toast.error(error.message);
 //   }
-};
+// };
 
 
   const getUserCart = async ( token ) => {
