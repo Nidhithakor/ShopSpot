@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 const AdminReviews = () => {
   const [groupedReviews, setGroupedReviews] = useState({});
-  const backendUrl = "http://localhost:4000"; // Update with your backend URL
+  import { backendUrl } from "../../context/ShopContext";
 
   // Fetch all reviews
   const fetchReviews = async () => {
