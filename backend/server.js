@@ -18,7 +18,7 @@ dotenv.config();
 
 app.use(
   cors({
-    origin: "https://shop-spot-fend.vercel.app/",
+    // origin: "https://shop-spot-fend.vercel.app/",
     credentials: true,
   })
 );
