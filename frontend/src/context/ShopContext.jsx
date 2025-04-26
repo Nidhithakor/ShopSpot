@@ -5,6 +5,7 @@ import axios from "axios";
 
 export const ShopContext = createContext();
 
+
 const ShopContextProvider = (props) => {
   const currency = "$";
   const delivery_fee = 10;
@@ -141,9 +142,9 @@ const ShopContextProvider = (props) => {
 
   const getProductsData = async () => {
     try {
+      console.log("RESPONSE:", response);
       const response = await axios.get(backendUrl + "/api/product/list");
 
-      console.log("RESPONSE:", response);
       if (response.data.success) {
         setProducts(response.data.products);
       } else {
