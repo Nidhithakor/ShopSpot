@@ -2,6 +2,8 @@ import orderModel from "../models/orderModel.js"
 import userModel from "../models/userModel.js";
 import razorpay from 'razorpay'
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
 
 //global variables
 const currency = 'inr';

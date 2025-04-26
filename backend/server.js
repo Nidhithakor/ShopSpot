@@ -1,23 +1,30 @@
 import express from "express";
 import cors from "cors";
-import 'dotenv/config'
 import connectDB from "./config/mongodb.js";
 import connectCloudinary from "./config/cloudinary.js";
 import userRouter from "./routes/userRoute.js";
 import productRouter from "./routes/productRoute.js";
 import cartRouter from "./routes/cartRoute.js";
 import orderRouter from "./routes/orderRoute.js";
-
+import dotenv from "dotenv";
 // App config
 const app = express();
 const port = process.env.PORT || 4000;
 connectDB();
 connectCloudinary();
-// dotenv.config();
+dotenv.config();
 
 // middlewares 
+
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
+
 app.use(express.json());
-// app.use(cors());
+
 
 // api endpoints
 app.use('/api/user',userRouter);
@@ -32,11 +39,6 @@ app.get('/' , (req,res) => {
 });
 
 
-app.use(
-  cors({
-    origin: "https://shop-spot-fend.vercel.app/",
-  })
-);
 
 
 
