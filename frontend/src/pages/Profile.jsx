@@ -4,7 +4,7 @@ import React, { useState, useEffect, useContext } from "react";
 import Title from "../components/Title";
 import axios from "axios";
 import { ShopContext } from "../context/ShopContext";
-import {backendUrl} from '../pages/admin/List'
+import { backendUrl } from "../context/ShopContext";
 import { toast } from "react-toastify";
 
 const Profile = () => {

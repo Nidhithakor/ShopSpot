@@ -4,7 +4,7 @@ import { ShopContext } from '../context/ShopContext';
 import { assets } from '../assets/frontend_assets/assets';
 import RelatedProducts from '../components/RelatedProducts';
 import axios from 'axios';
-import { backendUrl } from './admin/List';
+import { backendUrl } from '../context/ShopContext';
 import Title from '../components/Title';
 
 const Product = () => {

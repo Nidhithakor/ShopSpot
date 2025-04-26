@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Title from "../../components/Title";
 import axios from "axios";
-import { backendUrl } from "./List";
+import {backendUrl} from '../../context/ShopContext'
 import { toast } from "react-toastify";
 
 const Dashboard = () => {

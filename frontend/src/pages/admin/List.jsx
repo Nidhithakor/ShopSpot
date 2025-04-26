@@ -1,8 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
-
-export const backendUrl = import.meta.env.REACT_APP_BACKEND_URL;
+import { backendUrl } from '../../context/ShopContext';
 export const currency = '$';
 const List = ({token}) => {
 

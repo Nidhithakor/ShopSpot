@@ -1,8 +1,8 @@
 import React, { createContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-
+import axios from 'axios';
+export const backendUrl = import.meta.env.VITE_BACKEND_URL;
 export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
@@ -39,7 +39,9 @@ const ShopContextProvider = (props) => {
     setCartItems(cartData);
 
     if(token) {
-      try {        
+      try {    
+        console.log("backendUrl:", backendUrl);
+    
         await axios.post(backendUrl + '/api/cart/add' , {itemId, size} , {headers : {token}});
       } catch (error) {
         console.log(error);
@@ -140,12 +142,12 @@ const ShopContextProvider = (props) => {
 
   const getProductsData = async () => {
     try {
-      console.log("entered try block")
-      const response = await axios.get(backendUrl + "/api/product/list" ,{
-        
-  headers: { "Content-Type": "application/json" },      });
+      
+      const response = await axios.get(backendUrl + '/api/product/list', {
+withCredentials: true   
+      });
 
-      console.log("RESPONSE:", response);
+      // console.log( response);
       if (response.data.success) {
         setProducts(response.data.products);
       } else {
@@ -202,6 +204,7 @@ const ShopContextProvider = (props) => {
     products,
     currency,
     delivery_fee,
+    backendUrl,
     search,
     setSearch,
     showSearch,
