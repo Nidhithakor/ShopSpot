@@ -32,25 +32,9 @@ app.get('/' , (req,res) => {
 });
 
 
-const allowedOrigins = [
-  "https://shop-spot-nu.vercel.app", // production
-  /\.vercel\.app$/, // regex to allow ALL vercel preview URLs
-];
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (
-        !origin ||
-        allowedOrigins.some((o) =>
-          typeof o === "string" ? origin === o : o.test(origin)
-        )
-      ) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    credentials: true,
+    origin: "https://shop-spot-fend.vercel.app/",
   })
 );
 
