@@ -5,7 +5,6 @@ import axios from "axios";
 
 export const ShopContext = createContext();
 
-
 const ShopContextProvider = (props) => {
   const currency = "$";
   const delivery_fee = 10;
@@ -14,7 +13,7 @@ const ShopContextProvider = (props) => {
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [cartItems, setCartItems] = useState([]);
-  const [products, setProducts] = useState();
+  const [products, setProducts] = useState([]);
   const [token, setToken] = useState('');
   const navigate = useNavigate();
 
@@ -120,58 +119,41 @@ const ShopContextProvider = (props) => {
     return totalAmount;
   };
 
-  const getProductsData = async () => {
-    try {
-        
-      const response = await axios.get(`${backendUrl}/api/product/list`);
-
-      console.log(response);
-   
-      if(response.data.success) {
-        setProducts(response.data.products)
-      } else {
-        toast.error(response.data.message);
-      }
-
-
-    } catch (error) {
-      console.log(error);
-      toast.error(error.message);
-    }
-  };
-
   // const getProductsData = async () => {
   //   try {
-  //     const response = await axios.get(`${backendUrl}/api/product/list`);
-    
+  //        console.log(backendUrl);
+  //     const response = await axios.get(backendUrl + "/api/product/list");
 
-  //     if (response.data.success) {
-  //       console.log(response);
-  //       setProducts(response);
+  //     // console.log(response);
+   
+  //     if(response.data.success) {
+  //       setProducts(response.data.products)
   //     } else {
-  //       toast.error(response);
+  //       toast.error(response.data.message);
   //     }
+
+
   //   } catch (error) {
-  //     console.log("AXIOS ERROR:", error);
+  //     console.log(error);
   //     toast.error(error.message);
   //   }
   // };
-// const getProductsData = async () => {
-//   try {
-//     const response = await axios.get(`${backendUrl}/api/product/list`);
-//     console.log("RESPONSE:", response.data);
 
-//     if (response.data.success) {
-//       console.log("Products Data:", response.data.products);
-//       setProducts(response.data.products);
-//     } else {
-//       toast.error(response.data.message);
-//     }
-//   } catch (error) {
-//     console.log("AXIOS ERROR:", error);
-//     toast.error(error.message);
-//   }
-// };
+  const getProductsData = async () => {
+    try {
+      const response = await axios.get(backendUrl + "/api/product/list");
+
+      console.log("RESPONSE:", response);
+      if (response.data.success) {
+        setProducts(response.data.products);
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      console.log("AXIOS ERROR:", error);
+      toast.error(error.message);
+    }
+  };
 
 
   const getUserCart = async ( token ) => {
