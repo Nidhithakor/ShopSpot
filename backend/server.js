@@ -17,10 +17,7 @@ dotenv.config();
 // middlewares 
 
 app.use(
-  cors(
-    origin: "https://shop-spot-fend.vercel.app/",
-    // credentials: true,
-  )
+  cors()
 );
 
 app.use(express.json());
