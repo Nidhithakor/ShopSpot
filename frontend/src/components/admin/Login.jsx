@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 // import { backendUrl } from '../App';
-import { backendUrl } from '../../pages/List';
+// import { backendUrl } from '../../pages/List';
+import { backendUrl } from '../../context/ShopContext';
 import { toast } from 'react-toastify';
 
 const Login = ({setToken}) => {
