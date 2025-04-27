@@ -11,7 +11,7 @@ const AdminReviews = () => {
     try {
       const response = await axios.get(`${backendUrl}/api/product/reviews`, {
         headers: {
-          token: localStorage.getItem("token"), // Ensure admin is authenticated
+          token: localStorage.getItem("token"), 
         },
       });
 

@@ -7,10 +7,7 @@ import { data } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-
-
 const PlaceOrder = () => {
-
   const [method, setMethod] = useState("cod");
 
   const {
@@ -37,58 +34,53 @@ const PlaceOrder = () => {
   });
 
   const onChangeHandler = (event) => {
-
-    
     const name = event.target.name;
     const value = event.target.value;
 
-    setFormData((data) => ({ ...data, [name]:value }));
+    setFormData((data) => ({ ...data, [name]: value }));
   };
 
   const initPay = async (order) => {
-
-
     const apiKey = import.meta.env.VITE_RAZORPAY_KEY_ID;
-    // console.log("API Key:", apiKey); 
+    // console.log("API Key:", apiKey);
 
-    
-  if (!apiKey) {
-    toast.error("Razorpay API key is missing!");
-    return;
-  }
+    if (!apiKey) {
+      toast.error("Razorpay API key is missing!");
+      return;
+    }
 
-      const options = {
-        key: apiKey,
-        amount: order.amount,
-        currency: order.currency,
-        name: "Order Payment",
-        description: "Order Payment",
-        order_id: order.id,
-        receipt: order.receipt,
-        handler: async (response) => {
-          console.log(response);
+    const options = {
+      key: apiKey,
+      amount: order.amount,
+      currency: order.currency,
+      name: "Order Payment",
+      description: "Order Payment",
+      order_id: order.id,
+      receipt: order.receipt,
+      handler: async (response) => {
+        console.log(response);
 
+        try {
+          const { data } = await axios.post(
+            backendUrl + "/api/order/verifyRazorpay",
+            response,
+            { headers: { token } }
+          );
 
-            try {
-              const { data } = await axios.post(
-                backendUrl + "/api/order/verifyRazorpay",
-                response,
-                { headers: { token } }
-              );
-
-              if (data.success) {
-                navigate("/");
-                setCartItems({});
-              }
-            } catch (error) {
-              console.log(error);
-              toast.error(error);
-            }
-        },        
-      };
-       const rzp = new window.Razorpay(options);
-       rzp.open();
-  }
+          if (data.success) {
+            navigate("/");
+            setCartItems({});
+            setFormData({});
+          }
+        } catch (error) {
+          console.log(error);
+          toast.error(error);
+        }
+      },
+    };
+    const rzp = new window.Razorpay(options);
+    rzp.open();
+  };
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
@@ -145,11 +137,9 @@ const PlaceOrder = () => {
             }
           );
           if (response.data.success) {
-          
-          
+            toast.success("order placed!!");
             navigate("/");
-              toast.success("order placed!!");
-                setCartItems({});
+            setCartItems({});
           } else {
             toast.error(response.data.message);
           }
@@ -163,7 +153,6 @@ const PlaceOrder = () => {
           );
           if (responseRazorpay.data.success) {
             initPay(responseRazorpay.data.order);
-            
           }
           break;
 

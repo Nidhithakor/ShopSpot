@@ -40,9 +40,11 @@ const ShopContextProvider = (props) => {
 
     if(token) {
       try {    
-        console.log("backendUrl:", backendUrl);
+        // console.log("backendUrl:", backendUrl);
     
         await axios.post(backendUrl + '/api/cart/add' , {itemId, size} , {headers : {token}});
+
+        toast.success("Added to cart");
       } catch (error) {
         console.log(error);
         toast.error(error.message);
@@ -120,25 +122,6 @@ const ShopContextProvider = (props) => {
     return totalAmount;
   };
 
-  // const getProductsData = async () => {
-  //   try {
-  //        console.log(backendUrl);
-  //     const response = await axios.get(backendUrl + "/api/product/list");
-
-  //     // console.log(response);
-   
-  //     if(response.data.success) {
-  //       setProducts(response.data.products)
-  //     } else {
-  //       toast.error(response.data.message);
-  //     }
-
-
-  //   } catch (error) {
-  //     console.log(error);
-  //     toast.error(error.message);
-  //   }
-  // };
 
   const getProductsData = async () => {
     try {
