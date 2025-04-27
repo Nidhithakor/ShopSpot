@@ -144,9 +144,15 @@ const placeOrderRazorpay = async (req, res) => {
       receipt: newOrder._id.toString(),
     };
 
-    const razorpayOrder = await razorpayInstance.orders.create(orderOptions);
+    await razorpayInstance.orders.create(orderOptions, (error, order) => {
+      if(error) {
+        console.log(error)
+        return res.json({success:false, message:error});
+      }
+      res.json({success :true, order})
+    });
 
-    res.json({ success: true,key: process.env.RAZORPAY_KEY_ID, order: razorpayOrder });
+    // res.json({ success: true,key: process.env.RAZORPAY_KEY_ID, order: razorpayOrder });
   } catch (error) {
     console.log(error);
     res.status(500).json({ success: false, message: error.message });
