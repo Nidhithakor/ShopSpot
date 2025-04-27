@@ -1,10 +1,7 @@
-
-
 import React, { useState, useEffect, useContext } from "react";
 import Title from "../components/Title";
 import axios from "axios";
 import { ShopContext } from "../context/ShopContext";
-import { backendUrl } from "../context/ShopContext";
 import { toast } from "react-toastify";
 
 const Profile = () => {
@@ -24,7 +21,7 @@ const Profile = () => {
   const handleSaveChanges = async () => {
     try {
       const response = await axios.put(
-        `${backendUrl}/api/user/updateprofile`, // Change to your actual API endpoint
+        `${backendUrl}/api/user/updateprofile`, 
         { name, email },
         { headers: { token } }
       );
