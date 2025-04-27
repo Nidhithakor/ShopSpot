@@ -50,7 +50,7 @@ const placeOrder = async (req,res) => {
 
         await userModel.findByIdAndUpdate(userId , {cartData:{}});
 
-        res.json({suceess : true , message : 'Order Placed '})
+        res.json({ success: true, message: "Order Placed " });
 
 
     } catch (error) {
@@ -122,7 +122,7 @@ const placeOrderRazorpay = async (req, res) => {
         .json({ success: false, message: "No items in order" });
     }
 
-    const sellerId = items[0]?.sellerId || null; // Get sellerId from first item
+    const sellerId = items[0]?.sellerId || null; 
 
     const orderData = {
       userId,
@@ -146,7 +146,7 @@ const placeOrderRazorpay = async (req, res) => {
 
     const razorpayOrder = await razorpayInstance.orders.create(orderOptions);
 
-    res.json({ success: true, order: razorpayOrder });
+    res.json({ success: true,key: process.env.RAZORPAY_KEY_ID, order: razorpayOrder });
   } catch (error) {
     console.log(error);
     res.status(500).json({ success: false, message: error.message });
