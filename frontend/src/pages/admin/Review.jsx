@@ -44,7 +44,7 @@ import { toast } from "react-toastify";
   //  console.log(productId, reviewId);
     try {
       const response = await axios.delete(
-        `http://localhost:4000/api/product/reviews/delete/${productId}/${reviewId}`,
+        `${backendUrl}/api/product/reviews/delete/${productId}/${reviewId}`,
         {
           headers: { token: localStorage.getItem("token") },
         }
