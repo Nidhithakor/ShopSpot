@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+ import { backendUrl } from "../../context/ShopContext";
 
-const AdminReviews = () => {
+ const AdminReviews = () => {
   const [groupedReviews, setGroupedReviews] = useState({});
-  import { backendUrl } from "../../context/ShopContext";
+ 
 
   // Fetch all reviews
   const fetchReviews = async () => {
